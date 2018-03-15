@@ -1,0 +1,209 @@
+*, *:after *:before{
+	box-sizing: boeder-box;
+	margin: 0;
+	padding: 0;
+	-webkit-transition: all 100ms ease-in; 
+	/*Safari 和 Chrome，设置过渡效果——应用过渡效果的属性名、完成过渡效果所需时间、速度曲线*/
+	transition: all 100ms ease-in;
+}
+
+html{
+	background: #f9ece8;
+}
+
+.fox{
+	width: 215px;
+	height: 275px;
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50% -50%);
+	transform: translate(-50% -50%);
+	/*转换——元素从当前位置移动，位置参数：left(x坐标),top(y坐标)*/
+}
+
+.fox .head{
+	width: 184px;
+	height: 184px;
+	display: block;
+	background: #ff7373;
+	border-radius: 50%;/*圆形*/
+	position: absolute;/*设置z-index的前提*/
+	z-index: 2;/*一定要在定位元素上有效，值越大，越在最上层*/
+	top: 0px;
+	right: 0px;
+	overflow: hidden;/*超出圆形的部分被隐藏*/
+}
+
+.fox .head:before, .fox .head:after{/*在class为head的元素内容的最前面和最后面插入新内容*/
+	content: '';/*与:before、:after伪元素合用，定义元素之前或之后放置的生成内容*/
+	width: 184px;
+	height: 184px;
+	display: block;
+	background: #fff;
+	border-radius: 50%;/*圆形*/
+	position: absolute;/*设置bottom、left、right的前提*/
+	z-index: 1;
+	bottom: -92px;/*下移，定位元素下外边距超出包含块下边界92px*/
+}
+
+.fox .head:before{
+	left: -92px;/*左移，定位元素左外边距超出包含块左边界92px*/
+}
+
+.fox .head:after{
+	right: -92px;/*右移，定位元素右外边距超出包含块右边界92px*/
+}
+
+.fox .head .eye{
+	width: 18px;
+	height: 9px;
+	display: block;
+	background: #000;
+	border-radius: 18px 18px 0 0;/*半圆*/
+	position: absolute;
+	z-index: 2;
+	bottom: 40px;
+	animation: piscar 5s stop-start 0s infinite;/*对应@keyframes规则*/
+	-webkit-animation:piscar 5s stop-start 0s infinite;
+	/*动画——动画名称、动画完成一周期所需时间、速度曲线、开始时间、播放次数*/
+}
+
+
+.fox .head .eye:nth-child(odd){
+	left: 37px;
+	transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+}
+
+.fox .head .eye:nth-child(even){
+	right: 37px;
+	transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+}
+
+.fox .ear{
+	width: 93px;
+	height: 93px;
+	display: block;
+	background: #ff9090;
+	position: absolute;
+	top: 0px;
+}
+
+.fox .ear:nth-child(odd){
+	border-radius: 0 93px 0 0;/*1/4圆*/
+	left: 31px;
+}
+
+.fox .ear:nth-child(even){
+	border-radius: 93px 0 0 0;/*1/4圆*/
+	right: 0px;
+}
+
+.fox .nose{
+	width: 27px;
+	height: 27px;
+	display: block;
+	background: #000;
+	border-radius: 50%;
+	position: absolute;
+	z-index: 3;
+	top: 169px;
+	right: 78px;
+}
+
+.fox .body{
+	width: 107px;
+	height: 214px;
+	display: block;
+	background: #ff7373;
+	border-radius: 0 214px 214px 0;
+	position: absolute;
+	z-index: 1;
+	bottom: 0px;
+	right: 0px;
+}
+
+.fox .tail{
+	width: 215px;
+	height: 107px;
+	display: block;
+	background: #ff7373;
+	border-radius: 0 0 214px 214px;
+	position: absolute;
+	z-index: 1;
+	bottom: 0px;
+	right: 0px;
+	overflow: hidden;
+}
+
+.fox .tail:before{
+	content: '';
+	width: 57px;
+	height: 57px;
+	display: block;
+	background: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: -30px;
+	left: -30px;
+}
+
+.fox:hover .head, .fox:hover .ear{
+	transform: rotate(15deg);
+	-moz-transform: rotate(15deg);
+	-webkit-transform: rotate(15deg);
+}
+
+.fox:hover .ear:nth-child(odd){
+	left: 48px;
+}
+
+.fox:hover .ear:nth-child(even){
+	right: -3px;
+	top: 20px;
+}
+
+.fox:hover .nose{
+	width: 24px;
+	height: 24px;
+	top: 165px;
+	right: 103px;
+}
+
+a.author{
+  font-size: 12px;
+  text-decoration: none;
+  color: #f47c7c;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+@keyframes piscar{/*对应animation属性，创建动画，由当前样式逐渐改为新样式的动画效果*/
+	15% {
+		height: 1px;
+	}
+	45% {
+		height: 9px;
+	}
+	50% {
+		height: 1px;
+	}/*类似眨眼的动画*/
+}
+
+@-webkit-keyframes piscar{
+	15% {
+		height: 1px;
+	}
+	45% {
+		height: 9px;
+	}
+	50% {
+		height: 1px;
+	}
+}
